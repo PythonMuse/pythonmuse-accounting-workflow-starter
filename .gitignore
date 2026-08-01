@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+
+# Environment
+.env
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Real data — never commit real client/financial data.
+# These folders ship with a README only; everything else in them is
+# gitignored by default so a real dataset doesn't end up in version control
+# by accident. Remove the relevant line below only for deliberately
+# synthetic/masked sample data you intend to check in.
+data/raw/*
+!data/raw/README.md
+data/processed/*
+!data/processed/README.md
+outputs/*
+!outputs/README.md
+evidence/*
+!evidence/README.md
