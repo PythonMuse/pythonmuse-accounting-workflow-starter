@@ -13,6 +13,7 @@ Run this once you've reviewed and approved the draft from `02-organize-draft-age
 > - Ambiguous language
 > - Conflicting instructions
 > - Missing stop conditions
+> - Missing defenses against instructions embedded in ingested data (prompt injection)
 > - Rules that rely only on AI compliance but may require a stronger technical control
 >
 > Do not build those technical controls yet.

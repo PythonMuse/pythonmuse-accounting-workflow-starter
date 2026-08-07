@@ -4,6 +4,8 @@
 
 Run this to surface the company-specific and accounting-specific knowledge that isn't written down anywhere — the things "everyone on the team just knows."
 
+**Before you answer:** describe examples in general terms — avoid pasting real account numbers, client names, or exact figures into the chat.
+
 ---
 
 > Act as a new accounting intern preparing to perform this assignment.
