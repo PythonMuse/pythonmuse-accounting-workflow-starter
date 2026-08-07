@@ -4,6 +4,8 @@
 
 This file follows the **PythonMuse ONBOARD checklist** — read the full methodology in [Don't Just Prompt AI. ONBOARD It.](https://github.com/PythonMuse/ai-ledger/tree/main/articles/35-onboard-ai-workflows) if you haven't already. Fill in the bracketed placeholders below for your specific workflow before you start giving AI real data.
 
+This file already ships with safe, generic defaults filled in (allowed/not-allowed actions, stop conditions, prompt-injection defense) — you don't need to draft one from scratch. To customize it for your specific workflow, run `prompts/02-organize-draft-agent-file.md` (draft your role-specific rules) followed by `prompts/03-organize-apply-agent-file.md` (apply the approved draft and check for gaps), rather than hand-editing the placeholders directly.
+
 ---
 
 ## 1. AI's Role
