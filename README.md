@@ -37,6 +37,8 @@ code .
 
 Every prompt in `prompts/` is plain, tool-agnostic Markdown — open the file and paste the prompt into whatever AI tool you use (ChatGPT, Gemini, Copilot Chat, Claude.ai). Run them roughly in order; each one names the ONBOARD step it belongs to and a completion check before you move to the next.
 
+`AGENTS.md` ships pre-filled with safe, generic defaults — you're not drafting one from scratch. Prompts 02 and 03 are how you customize that same file for your specific workflow (draft your role-specific rules, then apply the approved draft and check for gaps); prompts 04 onward build out `plan.md` instead.
+
 **If you're using Claude Code specifically**, the same nine prompts are also wired up as slash commands in `.claude/commands/` — type `/onboard-organize-workspace`, `/onboard-draft-agent-file`, and so on, and Claude Code reads the matching file in `prompts/` for you. Both point at the same source text, so there's nothing to keep in sync.
 
 | # | Prompt file | Claude Code command | ONBOARD step |
