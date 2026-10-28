@@ -6,6 +6,38 @@ Read the full methodology first: [Don't Just Prompt AI. ONBOARD It.](https://git
 
 ---
 
+## Requirements
+
+You don't need Python to start — the ONBOARD prompts are plain Markdown.
+
+- **Required:** [Git](https://git-scm.com/downloads) and an AI tool (ChatGPT, Gemini, Copilot Chat, Claude.ai, or Claude Code).
+- **Recommended:** [VS Code](https://code.visualstudio.com/) — the `code .` commands below open it, and it prompts you to install the extensions listed in `.vscode/extensions.json`.
+- **Claude Code users — Windows only out of the box:** the sensitive-data hook in `.claude/hooks/` (blocks SSNs, EINs, card numbers, and bank account numbers before they reach the AI) runs on Windows PowerShell, which ships with Windows. On Mac/Linux it **does not run, and Claude Code gives no warning** — the guardrail is simply off. See [Mac / Linux: turning on the sensitive-data hook](#mac--linux-turning-on-the-sensitive-data-hook) below.
+- **Python (later, optional):** only needed once you keep a script in `scripts/` (prompt 07 onward). Use Python 3.10 or later in a virtual environment (`.venv/` is already gitignored), and add a `requirements.txt` listing the libraries that script actually uses.
+
+### Mac / Linux: turning on the sensitive-data hook
+
+The hook script itself works on any platform; only the command that launches it is Windows-specific. Two changes:
+
+1. **Install PowerShell 7**, which provides the `pwsh` command — see Microsoft's instructions for [macOS](https://learn.microsoft.com/powershell/scripting/install/installing-powershell-on-macos) or [Linux](https://learn.microsoft.com/powershell/scripting/install/installing-powershell-on-linux). Check it worked with `pwsh --version`.
+2. **Edit `.claude/settings.json`** — in all three `"command"` lines, replace
+
+   ```
+   powershell -NoProfile -ExecutionPolicy Bypass -File
+   ```
+
+   with
+
+   ```
+   pwsh -NoProfile -File
+   ```
+
+   (Execution policy is a Windows-only setting, so the flag isn't needed.)
+
+To confirm it's on, start Claude Code in the project and send a message containing a made-up Social Security number (any nine digits written 3-2-4 with dashes). It should be blocked with *"possible Social Security Number detected"*. Windows users can run the same check.
+
+---
+
 ## Use This Template
 
 On GitHub, click **"Use this template"** to create your own copy. Or clone it directly:
@@ -39,19 +71,19 @@ Every prompt in `prompts/` is plain, tool-agnostic Markdown — open the file an
 
 `AGENTS.md` ships pre-filled with safe, generic defaults — you're not drafting one from scratch. Prompts 02 and 03 are how you customize that same file for your specific workflow (draft your role-specific rules, then apply the approved draft and check for gaps); prompts 04 onward build out `plan.md` instead.
 
-**If you're using Claude Code specifically**, the same nine prompts are also wired up as slash commands in `.claude/commands/` — type `/onboard-organize-workspace`, `/onboard-draft-agent-file`, and so on, and Claude Code reads the matching file in `prompts/` for you. Both point at the same source text, so there's nothing to keep in sync.
+**If you're using Claude Code specifically**, the same nine prompts are also wired up as slash commands in `.claude/commands/` — type `/01-onboard-organize-workspace`, `/02-onboard-draft-agent-file`, and so on, and Claude Code reads the matching file in `prompts/` for you. Both point at the same source text, so there's nothing to keep in sync.
 
 | # | Prompt file | Claude Code command | ONBOARD step |
 |---|---|---|---|
-| 01 | `prompts/01-organize-create-workspace.md` | `/onboard-organize-workspace` | O — Organize |
-| 02 | `prompts/02-organize-draft-agent-file.md` | `/onboard-draft-agent-file` | O — Organize |
-| 03 | `prompts/03-organize-apply-agent-file.md` | `/onboard-apply-agent-file` | O — Organize |
-| 04 | `prompts/04-name-the-assignment.md` | `/onboard-name-assignment` | N — Name |
-| 05 | `prompts/05-brief-interview-me.md` | `/onboard-brief-interview` | B — Brief |
-| 06 | `prompts/06-obtain-execution-plan.md` | `/onboard-execution-plan` | O — Obtain |
-| 07 | `prompts/07-allow-controlled-test.md` | `/onboard-controlled-test` | A — Allow |
-| 08 | `prompts/08-review-package.md` | `/onboard-review-package` | R — Review |
-| 09 | `prompts/09-document-update-instructions.md` | `/onboard-document-learnings` | D — Document |
+| 01 | `prompts/01-organize-create-workspace.md` | `/01-onboard-organize-workspace` | O — Organize |
+| 02 | `prompts/02-organize-draft-agent-file.md` | `/02-onboard-draft-agent-file` | O — Organize |
+| 03 | `prompts/03-organize-apply-agent-file.md` | `/03-onboard-apply-agent-file` | O — Organize |
+| 04 | `prompts/04-name-the-assignment.md` | `/04-onboard-name-assignment` | N — Name |
+| 05 | `prompts/05-brief-interview-me.md` | `/05-onboard-brief-interview` | B — Brief |
+| 06 | `prompts/06-obtain-execution-plan.md` | `/06-onboard-execution-plan` | O — Obtain |
+| 07 | `prompts/07-allow-controlled-test.md` | `/07-onboard-controlled-test` | A — Allow |
+| 08 | `prompts/08-review-package.md` | `/08-onboard-review-package` | R — Review |
+| 09 | `prompts/09-document-update-instructions.md` | `/09-onboard-document-learnings` | D — Document |
 
 ---
 
@@ -63,7 +95,7 @@ pythonmuse-accounting-workflow-starter/
   CLAUDE.md                    pointer to AGENTS.md, for Claude Code
   GEMINI.md                    pointer to AGENTS.md, for Gemini
   .github/copilot-instructions.md   pointer to AGENTS.md, for GitHub Copilot
-  .claude/commands/            /onboard-... slash commands (Claude Code only)
+  .claude/commands/            /01-onboard-... to /09-onboard-... slash commands (Claude Code only)
 
   plan.md                      assignment, business context, execution plan (fill in via prompts 04-06)
   status_update.md             rolling session tracker
